@@ -10,9 +10,6 @@ return {
 	coa_enabled = {
 		en = "Enabled",
 	},
-	coa_see_through = {
-		en = "Outline visible through walls",
-	},
 	coa_colour = {
 		en = "Outline colour (RGB)",
 	},

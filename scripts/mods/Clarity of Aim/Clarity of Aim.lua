@@ -1,12 +1,12 @@
 --[[
 	Name: Clarity of Aim
 	Author: Wobin
-	Date: 24/06/2026
-	Version: 1.0.0
+	Date: 25/06/2026
+	Version: 1.0.1
 ]]--
 
 local mod = get_mod("Clarity of Aim")
-mod.version = "1.0.0"
+mod.version = "1.0.1"
 
 local ScriptUnit = ScriptUnit
 local Managers = Managers
@@ -14,6 +14,7 @@ local HEALTH_ALIVE = HEALTH_ALIVE
 local player_manager = Managers.player
 
 local OUTLINE_NAME = "clarity_of_aim_focus"
+local MATERIAL_LAYERS = { "minion_outline" }
 
 -- Reference to our registered outline profile table (mutated by refresh).
 local outline_cfg = nil
@@ -26,19 +27,11 @@ local function outline_colour()
 	}
 end
 
-local function material_layers()
-	if mod:get("coa_see_through") then
-		return { "minion_outline", "minion_outline_reversed_depth" }
-	end
-
-	return { "minion_outline" }
-end
-
 mod:hook_require("scripts/settings/outline/outline_settings", function(settings)
 	settings.MinionOutlineExtension[OUTLINE_NAME] = {
 		priority = 2,
 		color = outline_colour(),
-		material_layers = material_layers(),
+		material_layers = MATERIAL_LAYERS,
 		visibility_check = function(unit)
 			return HEALTH_ALIVE[unit]
 		end,
@@ -49,7 +42,6 @@ end)
 mod.refresh_outline_profile = function()
 	if outline_cfg then
 		outline_cfg.color = outline_colour()
-		outline_cfg.material_layers = material_layers()
 	end
 end
 
@@ -176,7 +168,7 @@ mod.on_setting_changed = function(setting_id)
 		return
 	end
 
-	if setting_id:find("^coa_colour") or setting_id == "coa_see_through" then
+	if setting_id:find("^coa_colour") then
 		mod.refresh_outline_profile()
 		mod.clear_focus()
 	elseif setting_id == "coa_enabled" then

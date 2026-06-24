@@ -12,11 +12,6 @@ return {
 				default_value = true,
 			},
 			{
-				setting_id = "coa_see_through",
-				type = "checkbox",
-				default_value = true,
-			},
-			{
 				setting_id = "coa_colour",
 				type = "group",
 				sub_widgets = {
