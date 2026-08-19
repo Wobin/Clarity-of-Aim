@@ -13,13 +13,4 @@ return {
 	coa_colour = {
 		en = "Outline colour (RGB)",
 	},
-	coa_colour_R = {
-		en = "Red",
-	},
-	coa_colour_G = {
-		en = "Green",
-	},
-	coa_colour_B = {
-		en = "Blue",
-	},
 }

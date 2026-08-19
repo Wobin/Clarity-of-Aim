@@ -1,4 +1,21 @@
 local mod = get_mod("Clarity of Aim")
+local function migrate_colour(id)
+	if mod:get(id) ~= nil then
+		return
+	end
+
+	local r = mod:get(id .. "_R")
+	local g = mod:get(id .. "_G")
+	local b = mod:get(id .. "_B")
+
+	if type(r) == "number" and type(g) == "number" and type(b) == "number" then
+		mod:set(id, { 255, r, g, b })
+	end
+end
+
+migrate_colour("coa_colour")
+
+
 
 return {
 	name = mod:localize("mod_name"),
@@ -13,12 +30,9 @@ return {
 			},
 			{
 				setting_id = "coa_colour",
-				type = "group",
-				sub_widgets = {
-					{ setting_id = "coa_colour_R", type = "numeric", default_value = 255, range = {0, 255} },
-					{ setting_id = "coa_colour_G", type = "numeric", default_value = 0,   range = {0, 255} },
-					{ setting_id = "coa_colour_B", type = "numeric", default_value = 0,   range = {0, 255} },
-				},
+				type = "color",
+				default_value = { 255, 255, 0, 0 },
+				has_alpha = false,
 			},
 		},
 	},

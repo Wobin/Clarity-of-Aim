@@ -8,6 +8,5 @@ return {
 			mod_localization = "Clarity of Aim/scripts/mods/Clarity of Aim/Clarity of Aim_localization",
 		})
 	end,
-	version = "1.0.0",
 	packages = {},
 }

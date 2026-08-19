@@ -1,12 +1,11 @@
 --[[
 	Name: Clarity of Aim
 	Author: Wobin
-	Date: 25/06/2026
-	Version: 1.0.1
+	Date: 20/08/2026
 ]]--
 
 local mod = get_mod("Clarity of Aim")
-mod.version = "1.0.1"
+mod.version = mod.get_metadata and mod:get_metadata("version") or "unknown"
 
 local ScriptUnit = ScriptUnit
 local Managers = Managers
@@ -20,6 +19,12 @@ local MATERIAL_LAYERS = { "minion_outline" }
 local outline_cfg = nil
 
 local function outline_colour()
+	local c = mod:get("coa_colour")
+
+	if type(c) == "table" and #c >= 4 then
+		return { c[2] / 255, c[3] / 255, c[4] / 255 }
+	end
+
 	return {
 		(mod:get("coa_colour_R") or 255) / 255,
 		(mod:get("coa_colour_G") or 0) / 255,
@@ -187,4 +192,10 @@ mod.on_game_state_changed = function(status, state_name)
 		mod.clear_focus()
 		outline_system = nil
 	end
+end
+
+
+mod.on_settings_reset = function()
+	mod.refresh_outline_profile()
+	mod.clear_focus()
 end

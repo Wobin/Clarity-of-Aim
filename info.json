@@ -1,0 +1,17 @@
+{
+	"name": "Clarity of Aim",
+	"description": "Adds a glowing outline to the enemy your Skitarii Advanced Combat Doctrines stance is auto-aiming at.",
+	"version": "1.1.1",
+	"author": "Wobin",
+	"homepage": "https://www.nexusmods.com/warhammer40kdarktide/mods/943",
+	"source": "https://github.com/Wobin/Clarity-of-Aim",
+	"funding": {
+		"kofi": "https://ko-fi.com/wobin_dwonderdog"
+	},
+	"nexusId": "943",
+	"order": {
+		"require": [],
+		"this_after": [],
+		"this_before": []
+	}
+}
